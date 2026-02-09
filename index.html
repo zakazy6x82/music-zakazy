@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыкальный плеер</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Сайдбар -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <span>Музыка</span>
+            </div>
+            <nav class="menu">
+                <a href="#" class="active"><i class="fas fa-home"></i> Главная</a>
+                <a href="#"><i class="fas fa-search"></i> Поиск</a>
+                <a href="#"><i class="fas fa-heart"></i> Мой плейлист</a>
+                <a href="#"><i class="fas fa-star"></i> Избранное</a>
+                <a href="#upload"><i class="fas fa-upload"></i> Загрузить</a>
+            </nav>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <header class="header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск треков...">
+                </div>
+                <div class="user-menu">
+                    <button id="uploadBtn"><i class="fas fa-cloud-upload-alt"></i> Загрузить</button>
+                </div>
+            </header>
+
+            <!-- Секция загрузки (скрыта по умолчанию) -->
+            <section id="uploadSection" class="upload-section" style="display: none;">
+                <h2><i class="fas fa-upload"></i> Загрузить музыку</h2>
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-file-audio fa-3x"></i>
+                    <p>Перетащите аудиофайлы сюда или</p>
+                    <input type="file" id="fileInput" accept="audio/*" multiple>
+                    <label for="fileInput" class="btn">Выбрать файлы</label>
+                    <p class="formats">Поддерживаемые форматы: MP3, WAV, OGG</p>
+                </div>
+                <div class="upload-progress" id="progressContainer">
+                    <!-- Прогресс загрузки будет здесь -->
+                </div>
+            </section>
+
+            <!-- Библиотека музыки -->
+            <section class="music-library">
+                <h2>Моя музыка</h2>
+                <div class="filters">
+                    <button class="filter-btn active">Все треки</button>
+                    <button class="filter-btn">Избранное</button>
+                    <button class="filter-btn">Недавние</button>
+                </div>
+                <div class="tracks-list" id="tracksList">
+                    <!-- Треки будут загружаться динамически -->
+                    <div class="loading">Загрузка треков...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Плеер -->
+        <div class="player">
+            <div class="now-playing">
+                <img id="currentCover" src="https://via.placeholder.com/60" alt="Обложка">
+                <div class="track-info">
+                    <div id="currentTitle" class="track-title">Не играет</div>
+                    <div id="currentArtist" class="track-artist">Выберите трек</div>
+                </div>
+                <button id="favoriteBtn" class="fav-btn"><i class="far fa-heart"></i></button>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button id="prevBtn"><i class="fas fa-step-backward"></i></button>
+                    <button id="playBtn" class="play-btn"><i class="fas fa-play"></i></button>
+                    <button id="nextBtn"><i class="fas fa-step-forward"></i></button>
+                    <button id="repeatBtn"><i class="fas fa-redo"></i></button>
+                </div>
+                <div class="progress-bar">
+                    <span id="currentTime">0:00</span>
+                    <input type="range" id="progress" value="0" max="100">
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-options">
+                <button id="playlistBtn"><i class="fas fa-list"></i></button>
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" id="volume" value="70" max="100">
+                </div>
+            </div>
+
+            <!-- Аудио элемент -->
+            <audio id="audioPlayer" preload="metadata"></audio>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
